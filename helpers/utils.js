@@ -4,12 +4,28 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-    tokenValid: async (req,res,next) =>{
+    tokenValid : async (req, res, next) => {
         try {
+            const headerToken = req.get('Authorization');
+            if (!headerToken || !headerToken.startsWith('Bearer ')) {
+                return res.status(401).json({
+                    status: 108,
+                    message: 'Token tidak valid atau kadaluwarsa',
+                    data: null
+                });
+            }
             
+            const token = headerToken.replace('Bearer ', '');
+            const decoded = jwt.verify(token, secretKey);
+            
+            next();
         } catch (error) {
-            console.log(error)
-            res.json('SOMETHING WENT WRONG')
+            console.log(error);
+            return res.status(401).json({
+                status: 108,
+                message: 'Token tidak valid atau kadaluwarsa',
+                data: null
+            });
         }
     },
     secretKey,
