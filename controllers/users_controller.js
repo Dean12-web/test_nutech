@@ -39,15 +39,8 @@ class Controller {
 
     static async getUsers(req,res,next){
         try {
-            const data = await new Promise((resolve, reject) => {
-                pool.query(`SELECT * FROM users`, function(err,data) {
-                    if(err){
-                        reject(err)
-                    }else{
-                        resolve(data)
-                    }
-                });
-            });
+            const email = req.user.user
+            const data = await pool.query(`SELECT email, first_name,last_name,profile_image FROM users WHERE email = $1`,[email])
             res.json({
                 status:0,
                 message: "Sukses",

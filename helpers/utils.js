@@ -17,7 +17,7 @@ module.exports = {
             
             const token = headerToken.replace('Bearer ', '');
             const decoded = jwt.verify(token, secretKey);
-            
+            req.user = decoded
             next();
         } catch (error) {
             console.log(error);
