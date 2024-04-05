@@ -101,6 +101,23 @@ class Controller {
             next(error);
         }
     }
+
+    static async updateUsers(req, res, next){
+        try {
+            const {first_name, last_name} = req.body;
+            const email = req.user.user
+            await pool.query(`UPDATE users SET first_name =$1, last_name =$2`,[first_name,last_name])
+            const user = await pool.query(`SELECT email, first_name,last_name,profile_image FROM users WHERE email = $1`,[email])
+            res.status(200).json({
+                status: 0,
+                message: "Update Pofile berhasil",
+                data: user.rows
+            });
+        } catch (error) {
+            console.log(error);
+            next(error);
+        }
+    } 
     
 }
 
