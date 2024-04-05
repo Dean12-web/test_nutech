@@ -1,3 +1,12 @@
+CREATE TABLE users(
+	email 		VARCHAR(100) PRIMARY KEY NOT NULL,
+	first_name  VARCHAR(100) NOT NULL,
+	last_name 	VARCHAR(100) NOT NULL,
+	password	VARCHAR(100) NOT NULL,
+	profile_image TEXT DEFAULT 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+	balance 	INT DEFAULT 0
+)
+
 CREATE TABLE banners(
     banner_name VARCHAR(100) PRIMARY KEY NOT NULL,
     banner_image TEXT,
@@ -34,3 +43,12 @@ INSERT INTO services (service_code,service_name,service_icon,service_tarif)
 		('QURBAN', 'Paket data','https://nutech-integrasi.app/dummy.jpg',20000),
 		('ZAKAT', 'Paket data','https://nutech-integrasi.app/dummy.jpg',30000)
 		
+
+CREATE TABLE transactions (
+	invoice_number VARCHAR(100) PRIMARY KEY NOT NULL, 
+	transaction_type VARCHAR(100) NOT NULL,
+	total_amount INT,
+	created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (service_code) REFERENCES services(service_code),
+	FOREIGN KEY (email) REFERENCES users(email)
+)
