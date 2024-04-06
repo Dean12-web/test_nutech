@@ -9,6 +9,9 @@ var bannersRouter = require('./routes/banners');
 var servicesRouter = require('./routes/services');
 var loginRouter = require('./routes/login');
 var profileRouter = require('./routes/profiles');
+var balanceRouter = require('./routes/balances');
+var topupRouter = require('./routes/topup');
+var transactionsRouter = require('./routes/transactions');
 
 var app = express();
 
@@ -24,5 +27,8 @@ app.use('/banner', bannersRouter);
 app.use('/services', servicesRouter);
 app.use('/login', loginRouter);
 app.use('/profile', profileRouter);
+app.use('/balance', balanceRouter);
+app.use('/topup', topupRouter);
+app.use('/transaction', transactionsRouter);
 
 module.exports = app;

@@ -1,4 +1,4 @@
-const pool = require ('../config/config.js')
+const pool = require('../config/config.js')
 
 class Controller {
     static async getAllBanner(req, res, next) {
@@ -14,7 +14,7 @@ class Controller {
             next(error);
         }
     }
-    
+
 }
 
 module.exports = Controller
