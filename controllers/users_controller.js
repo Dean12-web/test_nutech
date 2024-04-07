@@ -151,6 +151,7 @@ class Controller {
                         data: null
                     });
                 } else if (err) {
+                    console.log(err)
                     return res.status(400).json({
                         status: 102,
                         message: "Format Image tidak sesuai",
