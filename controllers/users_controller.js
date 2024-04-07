@@ -157,17 +157,16 @@ class Controller {
                         message: "Format Image tidak sesuai",
                         data: null
                     });
-                }
-                console.log(req.file)
+                } 
                 const file = req.file.filename;
-                const imageUrl = `http://localhost:3000/images/${file}`;
+                const imageUrl = `testnutech-production.up.railway.app/images/${file}`;
                 await pool.query(`UPDATE users SET profile_image = $1 WHERE email = $2`, [file, email]);
                 const user = await pool.query(`SELECT email, first_name, last_name, profile_image FROM users WHERE email = $1`, [email]);
                 const responseData = {
                     email: user.rows[0].email,
                     first_name: user.rows[0].first_name,
                     last_name: user.rows[0].last_name,
-                    profile_image: imageUrl // Gunakan URL lengkap untuk gambar
+                    profile_image: imageUrl
                 };
                 res.status(200).json({
                     status: 0,
