@@ -2,10 +2,11 @@ const { Pool } = require('pg');
 let pool
 try {
     pool = new Pool({
-        user: 'Dean12',
-        host: 'localhost',
-        database: 'testnutech',
-        port: 5432
+        user: 'postgres',
+        host: 'viaduct.proxy.rlwy.net',
+        database: 'railway',
+        port: 14281,
+        password:'pMBPgDlfKOnBEoXoBwIChCxUxfSLlMiZ'
     });
     console.log('Connected to the database.');
 } catch (error) {
