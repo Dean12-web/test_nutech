@@ -159,7 +159,7 @@ class Controller {
                     });
                 } 
                 const file = req.file.filename;
-                const imageUrl = `testnutech-production.up.railway.app/images/${file}`;
+                const imageUrl = `https://testnutech-production.up.railway.app/images/${file}`;
                 await pool.query(`UPDATE users SET profile_image = $1 WHERE email = $2`, [file, email]);
                 const user = await pool.query(`SELECT email, first_name, last_name, profile_image FROM users WHERE email = $1`, [email]);
                 const responseData = {
